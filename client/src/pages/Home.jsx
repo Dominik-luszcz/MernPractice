@@ -8,6 +8,7 @@ function Home()   {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [age, setAge] = useState("");
+    const [calories, setCalories] = useState("")
 
     useEffect(() => {
     Axios.get('http://localhost:3001/getUsers').then((response) => {
@@ -16,8 +17,9 @@ function Home()   {
     }, []);
 
     const createUser = () => {
-    Axios.post('http://localhost:3001/createUser', {name, age, username, password}).then((response) => {
-        setListOfUsers([...listOfUsers, {name, age, username, password}])
+        setCalories(0);
+        Axios.post('http://localhost:3001/createUser', {name, age, username, password, calories}).then((response) => {
+        setListOfUsers([...listOfUsers, {name, age, username, password, calories}])
     })
     }
 
@@ -32,6 +34,7 @@ function Home()   {
                     <h3>Name: {user.name}</h3>
                     <h3>Username: {user.username}</h3>
                     <h3>Age: {user.age}</h3>
+                    <h3>Calories: {user.calories}</h3>
                 </div>
                 );
             })}
