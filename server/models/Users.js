@@ -15,6 +15,24 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    }, 
+    userInfo: {
+        sex: {
+            type: String,
+            required: false
+        },
+        weight: {
+            type: Number,
+            required: false
+        },
+        height: {
+            type: Number,
+            required: false
+        },
+        activity: {
+            type: String,
+            requried: false
+        }
     }
 });
 
