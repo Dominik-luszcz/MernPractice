@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Routes, Route } from 'react-router-dom';
 import Axios from 'axios';
 
 /*
@@ -75,13 +75,14 @@ const Navigation = () => (
 );
 
 const Main = () => (
-  <Switch>
+  <Routes>
     <Route exact path='/' component={Home}></Route>
     <Route exact path='/calorieCounter' component={calorieCounter}></Route>
-  </Switch>
+  </Routes>
 );
 
-function Home () {
+//function Home () {
+  /*
   const [listOfUsers, setListOfUsers] = useState([]);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -137,7 +138,21 @@ function Home () {
     </div>
   </div>
   );
-};
+  */
+ //return (
+   // <div className='home'>
+     // <h1>Welcome to my portfolio website</h1>
+      //<p> Feel free to browse around and learn more about me.</p>
+    //</div>
+ //);
+//};
+
+const Home = () => (
+  <div className='home'>
+    <h1>Welcome to my portfolio website</h1>
+    <p> Feel free to browse around and learn more about me.</p>
+  </div>
+);
 
 const calorieCounter = () => (
   <div className='calorieCounter'>
