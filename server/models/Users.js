@@ -15,6 +15,24 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    calorieInfo: {
+        sex: {
+            type: Number,
+            required: false
+        },
+        weight: {
+            type: Number,
+            required: false
+        },
+        activity: {
+            type: String,
+            required: false
+        },
+        height: {
+            type: Number,
+            requried: false
+        }
     }
 });
 

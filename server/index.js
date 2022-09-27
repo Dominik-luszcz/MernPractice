@@ -26,7 +26,14 @@ app.post("/createUser", async (rec, res) => {
 
     res.json(user);
 });
+/*
+app.patch("/addCalorieInfo", async (rec, res) => {
+    const user = rec.body;
+    userModel.findByIdAndUpdate({_id:rec.params.id}, {
 
+    })
+})
+*/
 app.listen(3001, () => {
     console.log('Server is running');
 });
