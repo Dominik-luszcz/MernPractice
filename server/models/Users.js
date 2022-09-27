@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
         activity: {
             type: String,
             requried: false
+        },
+        calories: {
+            type: Number,
+            required: false
         }
     }
 });
