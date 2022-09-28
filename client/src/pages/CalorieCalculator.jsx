@@ -30,9 +30,9 @@ function CalorieCalculator() {
     }
 
     return (
-        <><h1>This is the calorie counter!</h1>
-        <h2>Select a user:</h2>
-        <UsersList />
+        <><h1>This is the calorie calculator!</h1>
+        {/*<h2>Select a user:</h2>*/}
+        {/*<UsersList /> */}
 
             <div>
                 <input type = "Number" placeholder='Height(cm)...' onChange={(event) => {

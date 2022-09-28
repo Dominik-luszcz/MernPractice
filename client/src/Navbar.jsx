@@ -11,6 +11,9 @@ function Navbar() {
         <li>
           <Link to="/calorieCalculator">Calorie Calculator</Link>
         </li>
+        <li>
+          <Link to="/bmi">BMI Calculator</Link>
+        </li>
       </ul>
     </nav>
   );
