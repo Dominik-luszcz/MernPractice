@@ -11,12 +11,21 @@ function CalorieCalculator() {
     const [height, setHeight] = useState("");
     const [calories, setCalories] = useState("");
     const [age, setAge] = useState("")
+    var activity_level = 0;
 
     const calculateCalories = () => {
-        if(sex == "female"){
-            setCalories(10 * weight + 6.25*height - 5*age -161);
+        if(activity === "low"){
+            activity_level = 1.2;
+        } else if (activity === "medium"){
+            activity_level = 1.5;
+        }else{
+            activity_level = 1.7;
+        }
+
+        if(sex === "female"){
+            setCalories( activity_level * (10 * weight + 6.25*height - 5*age -161));
         } else {
-            setCalories(10*weight + 6.25 * height - 5 * age + 5)
+            setCalories(activity_level *(10*weight + 6.25 * height - 5 * age + 5));
         }
     }
 
@@ -26,10 +35,10 @@ function CalorieCalculator() {
         <UsersList />
 
             <div>
-                <input type = "Number" placeholder='Height...' onChange={(event) => {
+                <input type = "Number" placeholder='Height(cm)...' onChange={(event) => {
                     setHeight(event.target.value);
                 }}/>
-                <input type = "Number" placeholder='Weight...' onChange={(event) => {
+                <input type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
                     setWeight(event.target.value);
                 }}/>
                 <input type = "text" placeholder='Sex (male or female)...' onChange={(event) => {
@@ -38,11 +47,20 @@ function CalorieCalculator() {
                 <input type = "Number" placeholder='Age...' onChange={(event) => {
                     setAge(event.target.value);
                 }}/>
+                <input type = "Text" placeholder='Activity level (low, medium, high)...' onChange={(event) => {
+                    setActivity(event.target.value);
+                }}/>
                 <button onClick={calculateCalories}> Calculate </button>
             </div>
 
             <div>
-                {calories}
+                {"BMR:  "}{calories}
+            </div>
+            <div>
+                {"Bulk:  "}{calories + 300}
+            </div>
+            <div>
+                {"Cut:  "}{calories - 300}
             </div>
         </>
     );
