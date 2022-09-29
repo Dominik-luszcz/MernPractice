@@ -69,7 +69,7 @@ function Home()   {
             <input type = "Number" placeholder='Age...' onChange={(event) => {
                 setAge(event.target.value);
             }}/>
-            <Button inverted onClick={createUser}> Create User </Button>
+            <Button inverted onClick={createUser}> Create User! </Button>
             </div>
     </div>
     );
