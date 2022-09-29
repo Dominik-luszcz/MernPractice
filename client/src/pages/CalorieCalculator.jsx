@@ -19,12 +19,16 @@ function CalorieCalculator() {
         { value: 'medium', label: 'Medium' },
         { value: 'high', label: 'High' }
     ]
+    const sexOptions = [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' }
+    ]
     var activity_level = 0;
 
     const calculateCalories = () => {
-        if(activityOptions === "low"){
+        if(activity === "low"){
             activity_level = 1.2;
-        } else if (activityOptions === "medium"){
+        } else if (activity === "medium"){
             activity_level = 1.5;
         }else{
             activity_level = 1.7;
@@ -57,6 +61,26 @@ function CalorieCalculator() {
     `;
     */
 
+    const selectStyles = {
+        control: (base) => ({
+          ...base,
+          maxHeight: 30,
+          minHeight: 10,
+          width: 370,
+        }),
+        dropdownIndicator: (base) => ({
+          ...base,
+          paddingTop: 0,
+          paddingBottom: 0,
+        }),
+        clearIndicator: (base) => ({
+          ...base,
+          paddingTop: 0,
+          paddingBottom: 0,
+        }),
+      };
+      
+
     return (
         <>
         <h1>This is the Calorie Calculator!</h1>
@@ -64,19 +88,27 @@ function CalorieCalculator() {
         {/*<UsersList /> */}
 
             <div>
-                <input type = "Number" placeholder='Height(cm)...' onChange={(event) => {
+                <input style = {{width: "370px"}} type = "Number" placeholder='Height(cm)...' onChange={(event) => {
                     setHeight(event.target.value);
                 }}/>
-                <input type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
+            </div>
+            <div>
+                <input style = {{width: "370px"}} type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
                     setWeight(event.target.value);
                 }}/>
-                <input type = "text" placeholder='Sex (male or female)...' onChange={(event) => {
-                    setSex(event.target.value);
-                }}/>
-                <input type = "Number" placeholder='Age...' onChange={(event) => {
+            </div>
+            <div>
+                <input style = {{width: "370px"}} type = "Number" placeholder='Age...' onChange={(event) => {
                     setAge(event.target.value);
                 }}/>
-                <Select options = {activityOptions}/>
+            </div>
+            <div>
+                <Select styles = {selectStyles} options = {activityOptions} placeholder = "Activity Level..." onChange={(event) => {
+                    setActivity(event.value);
+                }}/>
+                <Select styles = {selectStyles} options = {sexOptions} placeholder = "Sex..." onChange={(event) => {
+                    setSex(event.value);
+                }}/>
                 <Button inverted onClick={calculateCalories}> Calculate </Button>
             </div>
 
