@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import UsersList from "./users_list";
 import Axios from 'axios';
 import styled from "styled-components";
+import Select from "react-select"
 
 function CalorieCalculator() {
     const [sex, setSex] = useState("");
@@ -13,12 +14,17 @@ function CalorieCalculator() {
     const [height, setHeight] = useState("");
     const [calories, setCalories] = useState("");
     const [age, setAge] = useState("")
+    const activityOptions = [
+        { value: 'low', label: 'Low' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'high', label: 'High' }
+    ]
     var activity_level = 0;
 
     const calculateCalories = () => {
-        if(activity === "low"){
+        if(activityOptions === "low"){
             activity_level = 1.2;
-        } else if (activity === "medium"){
+        } else if (activityOptions === "medium"){
             activity_level = 1.5;
         }else{
             activity_level = 1.7;
@@ -70,9 +76,7 @@ function CalorieCalculator() {
                 <input type = "Number" placeholder='Age...' onChange={(event) => {
                     setAge(event.target.value);
                 }}/>
-                <input type = "Text" placeholder='Activity level (low, medium, high)...' onChange={(event) => {
-                    setActivity(event.target.value);
-                }}/>
+                <Select options = {activityOptions}/>
                 <Button inverted onClick={calculateCalories}> Calculate </Button>
             </div>
 
