@@ -37,6 +37,8 @@ function BMI() {
                 <input type = "Number" placeholder='Height(m)...' onChange={(event) => {
                     setHeight(event.target.value);
                 }}/>
+            </div>
+            <div>
                 <input type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
                     setWeight(event.target.value);
                 }}/>

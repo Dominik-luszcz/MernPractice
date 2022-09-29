@@ -88,17 +88,18 @@ function CalorieCalculator() {
         {/*<UsersList /> */}
 
             <div>
-                <input style = {{width: "370px"}} type = "Number" placeholder='Height(cm)...' onChange={(event) => {
+                <input style = {{width: "370px", padding: "6px"}} type = "Number" placeholder='Height(cm)...' onChange={(event) => {
                     setHeight(event.target.value);
                 }}/>
             </div>
+            
             <div>
-                <input style = {{width: "370px"}} type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
+                <input style = {{width: "370px", padding: "6px"}} type = "Number" placeholder='Weight(kg)...' onChange={(event) => {
                     setWeight(event.target.value);
                 }}/>
             </div>
             <div>
-                <input style = {{width: "370px"}} type = "Number" placeholder='Age...' onChange={(event) => {
+                <input style = {{width: "370px", padding: "6px"}} type = "Number" placeholder='Age...' onChange={(event) => {
                     setAge(event.target.value);
                 }}/>
             </div>
@@ -113,13 +114,13 @@ function CalorieCalculator() {
             </div>
 
             <p>
-                {"BMR:  "}{calories}
+                {"BMR:  "}{Number(calories).toFixed(2)}
             </p>
             <p>
-                {"Bulk:  "}{calories + 300}
+                {"Bulk:  "}{Number(calories + 300).toFixed(2)}
             </p>
             <p>
-                {"Cut:  "}{calories - 300}
+                {"Cut:  "}{Number(calories - 300).toFixed(2)}
             </p>
         </>
     );
