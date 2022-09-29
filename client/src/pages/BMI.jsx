@@ -43,7 +43,7 @@ function BMI() {
                 <Button inverted onClick={calculateBMI}> Calculate </Button>
             </div>
             <div>
-                {"BMI:  "}{bmi}
+                {"BMI:  "}{Number(bmi).toFixed(2)}
             </div>
            
         </>
