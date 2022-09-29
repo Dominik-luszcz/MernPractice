@@ -41,3 +41,8 @@ h1 {
 p {
   margin-bottom: 15px;
 }
+
+.font {
+  color: rgb(3, 3, 3);
+  font-size: 20px;
+}
