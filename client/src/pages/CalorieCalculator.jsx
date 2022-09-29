@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 //import { render } from "react-dom";
 import UsersList from "./users_list";
 import Axios from 'axios';
+import styled from "styled-components";
 
 function CalorieCalculator() {
     const [sex, setSex] = useState("");
@@ -30,8 +31,29 @@ function CalorieCalculator() {
         }
     }
 
+    const Button = styled.button`
+        background: ${props => props.inverted ? "lightcoral" : "black"};
+        color: ${props => props.inverted ? "black" : "lightcoral"};
+        border: 2px solid black;
+        font-size: 1em;
+        margin: 1em;
+        padding: 0.25em 1em;
+        border-radius: 3px;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    `;
+    /*
+    const Wrapper = styled.section`
+        padding: 0.5em;
+        background: lightcoral;
+    `;
+    */
+
     return (
-        <><h1>This is the calorie calculator!</h1>
+        <>
+        <h1>This is the Calorie Calculator!</h1>
         {/*<h2>Select a user:</h2>*/}
         {/*<UsersList /> */}
 
@@ -51,18 +73,18 @@ function CalorieCalculator() {
                 <input type = "Text" placeholder='Activity level (low, medium, high)...' onChange={(event) => {
                     setActivity(event.target.value);
                 }}/>
-                <button onClick={calculateCalories}> Calculate </button>
+                <Button inverted onClick={calculateCalories}> Calculate </Button>
             </div>
 
-            <div>
+            <p>
                 {"BMR:  "}{calories}
-            </div>
-            <div>
+            </p>
+            <p>
                 {"Bulk:  "}{calories + 300}
-            </div>
-            <div>
+            </p>
+            <p>
                 {"Cut:  "}{calories - 300}
-            </div>
+            </p>
         </>
     );
 }
