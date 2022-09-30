@@ -26,6 +26,13 @@ app.post("/createUser", async (rec, res) => {
 
     res.json(user);
 });
+/*
+app.patch("/user/:", async (rec, res) => {
+    var updateObject = rec.body;
+    id = req.params.id;
+    db.users.update({_id  : ObjectId(id)}, {$set: updateObject});
+});
+*/
 
 app.listen(3001, () => {
     console.log('Server is running');

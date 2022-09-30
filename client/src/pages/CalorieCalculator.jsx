@@ -6,14 +6,28 @@ import UsersList from "./users_list";
 import Axios from 'axios';
 import styled from "styled-components";
 import Select from "react-select"
+//import { Model, Query } from 'mongoose';
 
 function CalorieCalculator() {
+    const [user, setUser] = useState("")
+    const [diet, setDiet] = useState("")
     const [sex, setSex] = useState("");
     const [activity, setActivity] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [calories, setCalories] = useState("");
     const [age, setAge] = useState("")
+    const [listOfUsers, setListOfUsers] = useState([]);
+    useEffect(() => {
+        Axios.get('http://localhost:3001/getUsers').then((response) => {
+            //setListOfUsers(response.data)
+            const option = response.data.map((item)=>({
+                "value": item._id,
+                "label": item.name
+            }))
+            setListOfUsers(option)
+        })
+        }, []);
     const activityOptions = [
         { value: 'low', label: 'Low' },
         { value: 'medium', label: 'Medium' },
@@ -23,9 +37,15 @@ function CalorieCalculator() {
         { value: 'male', label: 'Male' },
         { value: 'female', label: 'Female' }
     ]
+    const dietOptions = [
+        { value: 'bulk', label: 'Bulk' },
+        { value: 'maintain', label: 'Maintain' },
+        { value: 'cut', label: 'Cut' }
+    ]
     var activity_level = 0;
 
     const calculateCalories = () => {
+        var dietNum = 0;
         if(activity === "low"){
             activity_level = 1.2;
         } else if (activity === "medium"){
@@ -34,11 +54,29 @@ function CalorieCalculator() {
             activity_level = 1.7;
         }
 
-        if(sex === "female"){
-            setCalories( activity_level * (10 * weight + 6.25*height - 5*age -161));
-        } else {
-            setCalories(activity_level *(10*weight + 6.25 * height - 5 * age + 5));
+        if(diet === "bulk"){
+            dietNum = 300;
+        } else if(diet === "maintain"){
+            dietNum = 0;
+        } else{
+            dietNum = -300;
         }
+
+        if(sex === "female"){
+            setCalories( (activity_level * (10 * weight + 6.25*height - 5*age -161)) + dietNum);
+        } else {
+            setCalories((activity_level *(10*weight + 6.25 * height - 5 * age + 5)) + dietNum);
+        }
+        /*
+        Model.updateOne({name: user}, {calories: calories}, null, function (err, docs) {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log("Original Doc : ",docs);
+            }
+        });
+        */
     }
 
     const Button = styled.button`
@@ -110,17 +148,17 @@ function CalorieCalculator() {
                 <Select styles = {selectStyles} options = {sexOptions} placeholder = "Sex..." onChange={(event) => {
                     setSex(event.value);
                 }}/>
+                <Select styles = {selectStyles} options = {dietOptions} placeholder = "Diet Type..." onChange={(event) => {
+                    setDiet(event.value);
+                }}/>
+                <Select styles = {selectStyles} options = {listOfUsers} placeholder = "User..." onChange={(event) => {
+                    setUser(event.value);
+                }}/>
                 <Button inverted onClick={calculateCalories}> Calculate </Button>
             </div>
 
             <p>
-                {"BMR:  "}{Number(calories).toFixed(2)}
-            </p>
-            <p>
-                {"Bulk:  "}{Number(calories + 300).toFixed(2)}
-            </p>
-            <p>
-                {"Cut:  "}{Number(calories - 300).toFixed(2)}
+                {"Calories Needed:  "}{Number(calories).toFixed(2)}
             </p>
         </>
     );
